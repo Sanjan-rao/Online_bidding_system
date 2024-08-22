@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Welcome to the Auction App</h1>
+<ul>
+    {% for item in auction_items %}
+        <li><a href="{{ url_for('main.auction_item', item_id=item.id) }}">{{ item.title }} - Current Bid: ${{ item.current_bid }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

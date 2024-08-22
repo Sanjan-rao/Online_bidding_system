@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Your Profile</h2>
+<h3>Your Auction Items</h3>
+<ul>
+    {% for item in auction_items %}
+        <li>
+            <a href="{{ url_for('main.auction_item', item_id=item.id) }}">{{ item.title }}</a>
+            - <a href="{{ url_for('main.update_auction', item_id=item.id) }}">Edit</a>
+            - <a href="{{ url_for('main.delete_auction', item_id=item.id) }}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<h3>Your Bids</h3>
+<ul>
+    {% for bid in bids %}
+        <li>Bid of ${{ bid.amount }} on <a href="{{ url_for('main.auction_item', item_id=bid.auction_item.id) }}">{{ bid.auction_item.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

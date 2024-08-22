@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ action }} Auction Item</h2>
+<form method="post">
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" value="{{ auction_item.title if auction_item else '' }}" required>
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description" required>{{ auction_item.description if auction_item else '' }}</textarea>
+
+    <label for="starting_bid">Starting Bid</label>
+    <input type="number" id="starting_bid" name="starting_bid" step="0.01" value="{{ auction_item.starting_bid if auction_item else '' }}" required>
+
+    <label for="end_date">End Date</label>
+    <input type="datetime-local" id="end_date" name="end_date" value="{{ auction_item.end_date.strftime('%Y-%m-%dT%H:%M') if auction_item else '' }}" required>
+
+    <button type="submit">{{ action }} Auction Item</button>
+</form>
+{% endblock %}
